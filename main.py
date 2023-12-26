@@ -11,5 +11,4 @@ root.minsize(width = 500, height = 320)
 
 
 
-
 root.mainloop()
