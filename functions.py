@@ -8,3 +8,10 @@ def toBinary():
 def toDecimal():
     pass
 
+# convert a decimal IP to binary
+def ipToBinary():
+    pass
+
+# convert a binary IP in to decimal
+def ipToDecimal():
+    pass
