@@ -58,9 +58,13 @@ def IpToBinary(userInput):
 
 # Option 4: decode a.b.c.d/mask
 def DecodeIpMask(userInput):
-    host, mask, network= readFullIP(userInput)
-    message = f"Host : {host}\nSubnet Mask: {mask}\nNetwork: {network}\n"
-    messagebox.showinfo(userInput, message)
+
+    try:
+        host, mask, network= readFullIP(userInput)
+        message = f"Host : {host}\nSubnet Mask: {mask}\nNetwork: {network}\n"
+        messagebox.showinfo(userInput, message)
+    except TypeError:
+        messagebox.showerror("Error!", "Please write correct IP and a valid mask")
 
 def Action():
     userInput = entry.get()
