@@ -30,15 +30,15 @@ def toDecimal(binaryNumber):
     # checking errors
     try:
         if int(binaryNumber) < 0:
-            return 1 # Negative number
+            return -1 # Negative number
         elif len(binaryNumber) > 8:
-            return 2 # more than 8 bits
+            return -2 # more than 8 bits
         else:
             for digit in binaryNumber:
                 if int(digit) > 1:
-                    return 3 # Digit other than '0' or '1'               
+                    return -3 # Digit other than '0' or '1'               
     except ValueError:
-        return 4 # extra characters
+        return -4 # extra characters
     
     # Check missing bits and fill them with with '0'    
     if len(binaryNumber) < 8:
@@ -46,7 +46,7 @@ def toDecimal(binaryNumber):
         while nDigitsOff > 0:
             binaryNumber = "0" + binaryNumber
             nDigitsOff -= 1
-        print(binaryNumber)
+        # print(binaryNumber)
 
     decimalNumber = 0
     power = 0
@@ -67,7 +67,6 @@ def ipToBinary(Ip):
     return ipBinary
 
 # convert a binary IP in to decimal
-# def ipToDecimal():
 # recieves a.b.c.d IP in base 2 and returns a decimal version of the IP
 def ipToDecimal(ipBinary):
 	a, b, c, d = ipBinary.split('.')
