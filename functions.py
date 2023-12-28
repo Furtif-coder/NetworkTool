@@ -9,13 +9,10 @@ def toBinary(decimalNumber):
         if number < 0 or number > 255:
             return 1 # Out of range
         else:
-            decimalNumber = number
-        
+            decimalNumber = number       
     except ValueError:
         return 2 # Extra characters
     
-    
-
     power = 7
     binaryNumber = ""
     while power >= 0:
@@ -39,8 +36,7 @@ def toDecimal(binaryNumber):
         else:
             for digit in binaryNumber:
                 if int(digit) > 1:
-                    return 3 # Digit other than '0' or '1'       
-        
+                    return 3 # Digit other than '0' or '1'               
     except ValueError:
         return 4 # extra characters
     
@@ -51,8 +47,6 @@ def toDecimal(binaryNumber):
             binaryNumber = "0" + binaryNumber
             nDigitsOff -= 1
         print(binaryNumber)
-    
-
 
     decimalNumber = 0
     power = 0
@@ -82,7 +76,7 @@ def ipToDecimal(ipBinary):
 	return IP
    
 
-# From last program
+# -- last --
 # Read the mask id 
 def readMask(num):
 	# Reading to Mask IP in base 2
@@ -108,6 +102,7 @@ def calculateNetBin32(hostBin32, maskBin32):
 		else:
 			netBin32 += "1"	
 		i += 1
+          
 	return netBin32
 
 # decode IP/mask
@@ -133,54 +128,16 @@ def readFullIP(fullIP):
 
     return hostDecimal, maskDecimal, netDecimal
 
-def Read_full_IP(decIP_maskID):
-	a, b, c, d = decIP_maskID.split('.')
-	d, ID_mask = d.split('/')
-	IP_host_Dec = a + '.' + b + '.' + c + '.' + d
-
-	# All Adresses count
-	n_adresses = 2**(32-int(ID_mask))
-
-	# Reading the Host IP in base 2 / for calculation later
-	a = toBinary(int(a))
-	b = toBinary(int(b))
-	c = toBinary(int(c))
-	d = toBinary(int(d))
-
-	IP_host_Bin = a + "." + b + "." + c + "." + d # Host IP in binary bytes
-	IP_host_Bin32 = a + b + c + d # Host IP in 32 bits format - used for calculation
-	
-	# Reading the 32bits format of a mask IP from a integer || ID_mask --> func: numToIP --> mask in 32bits 
-	maskBin32 = readMask(ID_mask)
-	print(maskBin32)
-	# The Mask IP in Binary format in bytes: a.b.c.d
-	maskBin = Bin32ToBinBytes(maskBin32) # Mask IP in binary format
-	# Mask in decimal a.b.c.d format
-	maskDec = ipToBinary(maskBin)
-
-	
-	# Calculation of the network IP --> function "netIP_Bin" --> returns a.b.c.d in binary
-	IP_net_Bin32 = netBin32(IP_host_Bin32, maskBin32)
-	IP_net_Bin = Bin32ToBinBytes(IP_net_Bin32)
-	IP_net_Dec = ipToDecimal(IP_net_Bin) # Network Adress in decimal bytes : a.b.c.d
-
-	return hostDec, maskDec, netDec, n_adresses
-
 # Function that turns all the 32 bits of an IP adress to the usual a bytes (a.b.c.d) / Binary Version
 def Bin32ToBinBytes(IP_Bin32):
 	a = IP_Bin32[0:8]
 	b = IP_Bin32[8:16]
 	c = IP_Bin32[16:24]
 	d = IP_Bin32[24:32]
-
 	return a + '.' + b + '.' + c + '.' + d
 
-
-
-def Num_Adresses(n):
-	return 2**n
-
-def eNumBin(n):
+# conting in binary, specify a range
+def enumerateBinary(n):
 	i=0
 	for i in range(n):
 		print(toBinary(i))

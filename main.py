@@ -10,7 +10,7 @@ root.geometry("500x320")
 root.maxsize(width = 500, height = 320)
 root.minsize(width = 500, height = 320)
 
-operation = ""
+operation = 0
 # functions command
 def SelectOption(option):
     global operation
@@ -52,7 +52,7 @@ def ToDecimal(userInput):
 def IpToBinary(userInput):
     converted = ipToBinary(userInput)
     if converted == -1:
-        messagebox.showerror("Error!", "Write an IP with decimal bytes: a.b.c.d")
+        messagebox.showerror("Error!", "Write an IP with decimal bytes: a.b.c.d\na, b, c, have to be integers in range [0, 255]")
     else:
         messagebox.showinfo("Conversion full IP", f"{userInput} : {converted}")
 
@@ -61,7 +61,6 @@ def DecodeIpMask(userInput):
     host, mask, network= readFullIP(userInput)
     message = f"Host : {host}\nSubnet Mask: {mask}\nNetwork: {network}\n"
     messagebox.showinfo(userInput, message)
-
 
 def Action():
     userInput = entry.get()
